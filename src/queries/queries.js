@@ -115,17 +115,17 @@ export const QUERIES = {
       }
     `,
   },
-  ashover: {
+  ashOfWar: {
     allNames: gql`
       query {
-        ashofwar(limit: -1) {
+        ashOfWar(limit: -1) {
           name
         }
       }
     `,
     details: gql`
       query SearchItems($name: String!) {
-        ashofwar(name: $name) {
+        ashOfWar(name: $name) {
           id
           name
           image
