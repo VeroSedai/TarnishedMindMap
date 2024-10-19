@@ -1,4 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
+
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -10,10 +11,11 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import Sidebar from './sidebar'; // Assicurati che questo sia corretto
 
+
 import './style.css';
 import CustomNode from '../CustomNodes/CustomNode';
+import { supabase } from '../../services/api/supabaseClient';
 
-// Componente per il nodo personalizzato
 const nodeTypes = {
   customNode: CustomNode,
 };
@@ -30,6 +32,52 @@ const DnDFlow = () => {
   const [editValue, setEditValue] = useState(nodes.data);
   const [selectedNodeId, setSelectedNodeId] = useState();
   const [selectedNodeData, setSelectedNodeData] = useState(null);
+
+  // Funzione per salvare gli scenari su Supabase
+  const saveScenario = async (scenarioName) => {
+    const scenario = { name: scenarioName, nodes, edges };
+    const { data, error } = await supabase
+      .from('scenarios')
+      .insert([scenario]);
+
+    if (error) {
+      console.error('Errore durante il salvataggio dello scenario:', error);
+    } else {
+      console.log('Scenario salvato con successo:', data);
+    }
+  };
+
+  // Funzione per recuperare gli scenari da Supabase
+  const loadScenario = async (scenarioName) => {
+    const { data, error } = await supabase
+      .from('scenarios')
+      .select('*')
+      .eq('name', scenarioName);
+
+    if (error) {
+      console.error('Errore durante il caricamento dello scenario:', error);
+    } else if (data.length > 0) {
+      const { nodes: loadedNodes, edges: loadedEdges } = data[0];
+      setNodes(loadedNodes);
+      setEdges(loadedEdges);
+      console.log('Scenario caricato:', data[0]);
+    }
+  };
+
+  // Funzione per aggiornare lo scenario corrente su Supabase
+  const updateScenario = async (scenarioId) => {
+    const updatedScenario = { nodes, edges };
+    const { data, error } = await supabase
+      .from('scenarios')
+      .update(updatedScenario)
+      .eq('id', scenarioId);
+
+    if (error) {
+      console.error("Errore durante l'aggiornamento dello scenario:", error);
+    } else {
+      console.log('Scenario aggiornato con successo:', data);
+    }
+  };
 
   const onNodeClick = (e, val) => {
     setEditValue(val.data.label);
@@ -71,7 +119,6 @@ const DnDFlow = () => {
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const nodeData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
 
-      // Check if the dropped element is valid
       if (!nodeData) {
         return;
       }
@@ -83,7 +130,7 @@ const DnDFlow = () => {
 
       const newNode = {
         id: getId(),
-        type: 'customNode', // Usa un tipo di nodo personalizzato
+        type: 'customNode',
         position,
         data: {
           label: nodeData.name || `${nodeData.type} node`,
@@ -91,7 +138,7 @@ const DnDFlow = () => {
           notes: nodeData.notes,
           description: nodeData.description,
           nodeType: nodeData.type,
-          onDelete: () => handleDeleteNode(newNode.id), // Funzione per eliminare il nodo
+          onDelete: () => handleDeleteNode(newNode.id),
         },
       };
 
@@ -126,7 +173,13 @@ const DnDFlow = () => {
           <Controls />
         </ReactFlow>
       </div>
-      <Sidebar onUpdateNode={handleUpdateNode} selectedNodeData={selectedNodeData}/> {/* Passa la funzione di aggiornamento */}
+      <Sidebar
+        onUpdateNode={handleUpdateNode}
+        selectedNodeData={selectedNodeData}
+        saveScenario={saveScenario}  // Funzione per salvare
+        loadScenario={loadScenario}  // Funzione per caricare
+        updateScenario={updateScenario}  // Funzione per aggiornare
+      /> 
     </ReactFlowProvider>
   </div>
   );

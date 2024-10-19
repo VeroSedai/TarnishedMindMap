@@ -4,7 +4,7 @@ import './style.css';
 import fetchNames from '../../services/api/fetchNames';
 import { fetchItemDetails } from '../../services/api/fetchDetails';
 
-const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
+const Sidebar = ({ onUpdateNode, selectedNodeData, saveScenario, loadScenario, updateScenario }) => {
   const [searchValue, setSearchValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -14,6 +14,7 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
   const [nodeImage, setNodeImage] = useState('');
   const [nodeDescription, setNodeDescription] = useState('');
   const [nodeNotes, setNodeNotes] = useState('');
+  const [scenarioName, setScenarioName] = useState(''); // Nome dello scenario
 
   const onDragStart = (event) => {
     const nodeData = {
@@ -43,7 +44,7 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
       setNodeNotes('');
     }
   }, [selectedNodeData]);
-  
+
   const handleTypeChange = async (e) => {
     const selectedType = e.target.value;
     setItemType(selectedType);
@@ -69,17 +70,18 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSearchValue(value);
-
+  
     if (value.length > 2) {
       const filteredSuggestions = suggestions.filter((item) =>
-        item.toLowerCase().includes(value.toLowerCase()) 
+        item.toLowerCase().includes(value.toLowerCase())
       );
       setSuggestions(filteredSuggestions); 
     } else {
-      const uniqueNames = fetchNames(itemType);
-      setSuggestions(uniqueNames);
+      fetchNames(itemType).then((uniqueNames) => {
+        setSuggestions(uniqueNames);
+      });
     }
-  };
+  };  
 
   const handleSelect = async (val) => {
     setSearchValue(val);
@@ -91,6 +93,30 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
       setNodeImage(result.image ? result.image : "");
       setNodeDescription(result.description ? result.description : "");
       setNodeNotes('');
+    }
+  };
+
+  const handleSaveScenario = () => {
+    if (scenarioName) {
+      saveScenario(scenarioName);
+    } else {
+      alert('Inserisci un nome per lo scenario.');
+    }
+  };
+
+  const handleLoadScenario = () => {
+    if (scenarioName) {
+      loadScenario(scenarioName);
+    } else {
+      alert('Inserisci un nome per lo scenario da caricare.');
+    }
+  };
+
+  const handleUpdateScenario = () => {
+    if (scenarioName) {
+      updateScenario(scenarioName);
+    } else {
+      alert('Inserisci un nome per lo scenario da aggiornare.');
     }
   };
 
@@ -124,9 +150,7 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
           renderItem={(item, isHighlighted) => (
             <div
               key={item}
-              className={`autocomplete-item ${
-                isHighlighted ? "highlighted" : ""
-              }`} 
+              className={`autocomplete-item ${isHighlighted ? "highlighted" : ""}`}
             >
               {item}
             </div>
@@ -135,12 +159,18 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
           onChange={handleInputChange}
           onSelect={handleSelect}
           inputProps={{
-            className: "autocomplete-input", 
+            className: "autocomplete-input",
           }}
           wrapperStyle={{ position: "relative" }}
         />
       </div>
       <div>
+        <input
+          type="text"
+          placeholder="Scenario Name"
+          value={scenarioName}
+          onChange={(e) => setScenarioName(e.target.value)}
+        />
         <input
           type="text"
           placeholder="Node Name"
@@ -166,7 +196,9 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
           onChange={(e) => setNodeNotes(e.target.value)}
         />
 
-        <button onClick={handleUpdate} className="btn">Update Node</button>
+        <button onClick={handleSaveScenario} className="btn">Save Scenario</button>
+        <button onClick={handleLoadScenario} className="btn">Load Scenario</button>
+        <button onClick={handleUpdateScenario} className="btn">Update Scenario</button>
 
         <div className="description">
           You can drag these nodes to the pane on the right.
