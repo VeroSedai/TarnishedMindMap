@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/react-elden-ring-mind-map/static/css/main.9e0ef45f.css",
-    "main.js": "/react-elden-ring-mind-map/static/js/main.a320e178.js",
+    "main.css": "/react-elden-ring-mind-map/static/css/main.b4948844.css",
+    "main.js": "/react-elden-ring-mind-map/static/js/main.9403569e.js",
+    "static/js/952.cfd3dcc1.chunk.js": "/react-elden-ring-mind-map/static/js/952.cfd3dcc1.chunk.js",
     "static/js/453.4efc79b0.chunk.js": "/react-elden-ring-mind-map/static/js/453.4efc79b0.chunk.js",
     "index.html": "/react-elden-ring-mind-map/index.html",
-    "main.9e0ef45f.css.map": "/react-elden-ring-mind-map/static/css/main.9e0ef45f.css.map",
-    "main.a320e178.js.map": "/react-elden-ring-mind-map/static/js/main.a320e178.js.map",
+    "main.b4948844.css.map": "/react-elden-ring-mind-map/static/css/main.b4948844.css.map",
+    "main.9403569e.js.map": "/react-elden-ring-mind-map/static/js/main.9403569e.js.map",
+    "952.cfd3dcc1.chunk.js.map": "/react-elden-ring-mind-map/static/js/952.cfd3dcc1.chunk.js.map",
     "453.4efc79b0.chunk.js.map": "/react-elden-ring-mind-map/static/js/453.4efc79b0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9e0ef45f.css",
-    "static/js/main.a320e178.js"
+    "static/css/main.b4948844.css",
+    "static/js/main.9403569e.js"
   ]
 }
