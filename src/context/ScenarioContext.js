@@ -1,7 +1,5 @@
-// src/context/ScenarioContext.js
 import React, { createContext, useContext, useState } from 'react';
 import { loadScenario, saveScenario, updateScenario } from '../services/api/scenarioServices';
-
 
 const ScenarioContext = createContext();
 
@@ -15,12 +13,18 @@ export const ScenarioProvider = ({ children }) => {
   const [scenarioId, setScenarioId] = useState('');
 
 
+  const resetScenario = () => {
+    setNodes([]); 
+    setEdges([]);
+    setScenarioId(''); 
+  };
+
   const handleSaveScenario = async (scenarioName) => {
     const result = await saveScenario(scenarioName, nodes, edges);
     if (result.error) {
       console.error('Errore durante il salvataggio:', result.error);
     } else {
-      console.log('Scenario salvato:', result.data);
+      console.log('Scenario saved:', result.data);
     }
   };
 
@@ -32,7 +36,7 @@ export const ScenarioProvider = ({ children }) => {
       setNodes(result.nodes);
       setEdges(result.edges);
       setScenarioId(result.scenarioId);
-      console.log('Scenario caricato:', result);
+      console.log('Scenario loaded:', result);
     }
   };
 
@@ -41,7 +45,7 @@ export const ScenarioProvider = ({ children }) => {
     if (result.error) {
       console.error("Errore durante l'aggiornamento:", result.error);
     } else {
-      console.log('Scenario aggiornato:', result.data);
+      console.log('Scenario updated:', result.data);
     }
   };
 
@@ -55,6 +59,7 @@ export const ScenarioProvider = ({ children }) => {
         saveScenario: handleSaveScenario,
         loadScenario: handleLoadScenario,
         updateScenario: handleUpdateScenario,
+        resetScenario,
       }}
     >
       {children}

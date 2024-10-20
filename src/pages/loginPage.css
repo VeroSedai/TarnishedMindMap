@@ -1,0 +1,70 @@
+/* Font in stile Elden Ring */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+
+/* Impostazioni di base per la pagina di login */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-container {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-trasparente */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  width: 300px;
+}
+
+.login-title {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  color: #e2bf65; /* Colore oro in stile Elden Ring */
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #e2bf65;
+  border-radius: 5px;
+  background-color: #1f1f1f;
+  color: #e2bf65;
+  font-family: 'Cinzel', serif;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #e1a600; /* Colore oro più brillante */
+  box-shadow: 0 0 10px #e1a600;
+}
+
+.login-button {
+  padding: 10px;
+  margin-top: 15px;
+  background-color: #e2bf65;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e1a600;
+}
+
+.login-button:active {
+  background-color: #b6932e;
+}
+

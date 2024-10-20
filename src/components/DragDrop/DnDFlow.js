@@ -6,6 +6,7 @@ import ReactFlow, {
   useEdgesState,
   Controls,
   Background,
+  BackgroundVariant
 } from 'reactflow';
 import { v4 as uuidv4 } from 'uuid';
 import 'reactflow/dist/style.css';
@@ -20,18 +21,20 @@ const nodeTypes = {
 
 const DnDFlow = () => {
   const reactFlowWrapper = useRef(null);
-  const { nodes: initialNodes, setNodes: setInitialNodes, edges: initialEdges, setEdges: setInitialEdges, loadScenario } = useScenario();
+  const { nodes: initialNodes, setNodes: setInitialNodes, edges: initialEdges, setEdges: setInitialEdges } = useScenario();
   const [nodes, setNodes, onNodesChange] = useNodesState([]); 
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [variant, setVariant] = useState('Lines');
   const [selectedNodeId, setSelectedNodeId] = useState();
   const [selectedNodeData, setSelectedNodeData] = useState(null);
   const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     if (!dragging) {
-      if (initialNodes.length > 0 || initialEdges.length > 0) {
+      if (initialNodes.length === 0 && initialEdges.length === 0) {
+        setNodes([]); 
+        setEdges([]);
+      } else {
         setNodes(initialNodes); 
         setEdges(initialEdges); 
       }
@@ -61,8 +64,20 @@ const DnDFlow = () => {
     [setInitialEdges, setEdges]
   );  
 
+  const handleDeleteNode = useCallback(
+    (nodeId) => {
+      setNodes((nds) => nds.filter((node) => node.id !== nodeId));
+      setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
+
+      setInitialNodes((nds) => nds.filter((node) => node.id !== nodeId));
+      setInitialEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
+    },
+    [setNodes, setEdges, setInitialNodes, setInitialEdges]
+  );
+
+
   const handleUpdateNode = (updatedNodeData) => {
-    const updatedNodes = nodes.map(node => {
+    const updatedNodes = nodes.map((node) => {
       if (node.id === selectedNodeId) {
         return {
           ...node,
@@ -73,6 +88,7 @@ const DnDFlow = () => {
             description: updatedNodeData.description,
             notes: updatedNodeData.notes,
             nodeType: updatedNodeData.type,
+            onDelete: () => handleDeleteNode(node.id),
           },
         };
       }
@@ -80,30 +96,26 @@ const DnDFlow = () => {
     });
     setNodes(updatedNodes);
   };
-  
-  const onDragOver = useCallback((event) => {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
-  }, []);
 
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
-  
+
       const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
       const nodeData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
-  
+
       if (!nodeData) {
         return;
       }
-  
+
       const position = reactFlowInstance.project({
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
       });
-  
+
+      const newNodeId = uuidv4(); 
       const newNode = {
-        id: uuidv4(), 
+        id: newNodeId, 
         type: 'customNode',
         position,
         data: {
@@ -112,17 +124,20 @@ const DnDFlow = () => {
           notes: nodeData.notes,
           description: nodeData.description,
           nodeType: nodeData.type,
+          onDelete: () => handleDeleteNode(newNodeId),
         },
       };
-  
-      // Aggiorna lo stato e il contesto insieme, evitando doppi render
+
       setNodes((nds) => [...nds, newNode]);
       setInitialNodes((nds) => [...nds, newNode]);
     },
-    [reactFlowInstance, setInitialNodes, setNodes]
+    [reactFlowInstance, setInitialNodes, setNodes, handleDeleteNode]
   );
-  
-  
+
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }, []);
 
   return (
     <div className="dndflow">
@@ -143,11 +158,11 @@ const DnDFlow = () => {
             fitView
             nodeTypes={nodeTypes}
           >
-            <Background color="#99b3ec" variant={variant} />
+            <Background color="#f1f1f1" variant={BackgroundVariant.Dots} />
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar selectedNodeData={selectedNodeData}  onUpdateNode={handleUpdateNode} />
+        <Sidebar selectedNodeData={selectedNodeData} onUpdateNode={handleUpdateNode} />
       </ReactFlowProvider>
     </div>
   );

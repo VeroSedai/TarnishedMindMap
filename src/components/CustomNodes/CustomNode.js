@@ -2,7 +2,7 @@ import React from 'react';
 import { Handle } from 'reactflow';
 import './customNode.css';
 
-const CustomNode = ({ data, onDelete }) => {
+const CustomNode = ({ data }) => {
   return (
     <div className="custom-node">
       <button onClick={data.onDelete} className="delete-node-button">X</button>
@@ -17,7 +17,6 @@ const CustomNode = ({ data, onDelete }) => {
       {data.description && <p className="custom-node-description">{data.description}</p>}
       {data.notes && <p className="custom-node-notes">{data.notes}</p>}
 
-      {/* Aggiungi punti di connessione in base al tipo di nodo */}
       {data.nodeType === 'input' && (
         <Handle type="source" position="bottom" />
       )}
