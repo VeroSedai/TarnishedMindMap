@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-elden-ring-mind-map/static/css/main.9ad17924.css",
-    "main.js": "/react-elden-ring-mind-map/static/js/main.dc4d755d.js",
+    "main.css": "/react-elden-ring-mind-map/static/css/main.10646486.css",
+    "main.js": "/react-elden-ring-mind-map/static/js/main.55322199.js",
     "static/js/952.ff7281ce.chunk.js": "/react-elden-ring-mind-map/static/js/952.ff7281ce.chunk.js",
     "static/js/513.1989cad9.chunk.js": "/react-elden-ring-mind-map/static/js/513.1989cad9.chunk.js",
     "static/js/157.1f5ad173.chunk.js": "/react-elden-ring-mind-map/static/js/157.1f5ad173.chunk.js",
@@ -26,8 +26,8 @@
     "static/js/999.6d1dde8c.chunk.js": "/react-elden-ring-mind-map/static/js/999.6d1dde8c.chunk.js",
     "static/js/546.fe90d47b.chunk.js": "/react-elden-ring-mind-map/static/js/546.fe90d47b.chunk.js",
     "index.html": "/react-elden-ring-mind-map/index.html",
-    "main.9ad17924.css.map": "/react-elden-ring-mind-map/static/css/main.9ad17924.css.map",
-    "main.dc4d755d.js.map": "/react-elden-ring-mind-map/static/js/main.dc4d755d.js.map",
+    "main.10646486.css.map": "/react-elden-ring-mind-map/static/css/main.10646486.css.map",
+    "main.55322199.js.map": "/react-elden-ring-mind-map/static/js/main.55322199.js.map",
     "952.ff7281ce.chunk.js.map": "/react-elden-ring-mind-map/static/js/952.ff7281ce.chunk.js.map",
     "513.1989cad9.chunk.js.map": "/react-elden-ring-mind-map/static/js/513.1989cad9.chunk.js.map",
     "157.1f5ad173.chunk.js.map": "/react-elden-ring-mind-map/static/js/157.1f5ad173.chunk.js.map",
@@ -53,7 +53,7 @@
     "546.fe90d47b.chunk.js.map": "/react-elden-ring-mind-map/static/js/546.fe90d47b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9ad17924.css",
-    "static/js/main.dc4d755d.js"
+    "static/css/main.10646486.css",
+    "static/js/main.55322199.js"
   ]
 }
