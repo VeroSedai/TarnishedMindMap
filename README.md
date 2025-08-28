@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# Elden Ring Lore Board
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A drag & drop web app inspired by tools like Mural, designed to build mind maps and reconstruct the lore of Elden Ring.
+It integrates official data through the GraphQL API of [Elden Ring Fan API](https://docs.eldenring.fanapis.com/), with support for saving boards and real-time collaboration.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+* Interactive drag & drop board: create nodes, connect them, and visualize relationships between characters, events, and locations.
+* GraphQL data integration: automatically fetch information about NPCs, items, bosses, and areas of the Elden Ring world.
+* Supabase authentication:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  * User registration and login
+  * Private groups for board management
+* Real-time collaboration with `@superviz/react-sdk` + `yjs`
+* Data persistence with Supabase
+* Export boards as images (via `html-to-image`)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **Framework**: React (CRA, react-scripts)
+* **UI / Graph Rendering**: React Flow (`reactflow`)
+* **Routing**: React Router DOM
+* **Data fetching**: GraphQL + `graphql-request`
+* **State & utilities**: `lodash`, `uuid`
+* **Authentication & Database**: Supabase (`@supabase/supabase-js`)
+* **Collaboration / Realtime**: `@superviz/react-sdk`, `@superviz/yjs`, `yjs`
+* **Export / Images**: `html-to-image`
+* **Deployment**: GitHub Pages (`gh-pages`)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup & Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Clone the repository
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/your-username/react-elden-ring-mind-map.git
+cd react-elden-ring-mind-map
+```
 
-### `npm run eject`
+### 2. Install dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 3. Configure environment variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create a file called `.env.local` in the project root with these values:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```env
+# Supabase
+REACT_APP_SUPA_URL =your_supabase_url
+REACT_APP_SUPA_ANON =your_supabase_anon_key
 
-## Learn More
+# Superviz
+REACT_APP_SUPVIZ=your_superviz_api_key
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Elden Ring API (GraphQL)
+REACT_APP_ER_API=https://eldenring.fanapis.com/graphql
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*(Note: in Create React App, env variables must start with `REACT_APP_`)*
 
-### Code Splitting
+### 4. Start the development server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+### 5. Build & Deploy to GitHub Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run deploy
+```
+---
 
-### Making a Progressive Web App
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* Read-only mode for guest users
+* Export board to PDF/JSON in addition to PNG
+* Tags and advanced filtering for nodes
+* Integration with additional lore APIs or wikis
+* Optimized mobile UI
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributing
 
-### Deployment
+Contributions are welcome.
+Open an issue or submit a pull request to improve the board.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT License
+Created by Elden Ring fans for Elden Ring fans.

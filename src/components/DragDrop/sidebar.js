@@ -3,6 +3,7 @@ import Autocomplete from 'react-autocomplete';
 import './style.css'; // Importiamo il file CSS
 import fetchNames from '../../services/api/fetchNames';
 import { fetchItemDetails } from '../../services/api/fetchDetails';
+import { supabase } from '../../services/api/supabaseClient';
 
 const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -91,6 +92,15 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
       setNodeNotes('');
     }
   };
+
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Logout failed:', error);
+    } else {
+      window.location.href = '/react-elden-ring-mind-map/login';
+    }
+  }
 
   return (
     <aside className="sidebar common-style">
@@ -199,10 +209,19 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
         <h3>Custom Node</h3>
         <p>Drag and drop this custom node to the pane on the right.</p>
         <div className="dndnode-sidebar" onDragStart={onDragStart} draggable>
-          <img src="https://p325k7wa.twic.pics/high/elden-ring/elden-ring/02-screenshots/ELDENRING_14_4K.jpg" alt="Node Icon" />
+          <img
+            src="https://p325k7wa.twic.pics/high/elden-ring/elden-ring/02-screenshots/ELDENRING_14_4K.jpg"
+            alt="Node Icon"
+          />
           <div className="node-title">Default Node</div>
           <div className="node-description">An example of a node</div>
         </div>
+      </div>
+
+      <div className="btn-container">
+        <button onClick={signOut} className="btn">
+          LogOut
+        </button>
       </div>
     </aside>
   );

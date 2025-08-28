@@ -4,6 +4,7 @@ import { loadScenariosName } from '../../services/api/scenarioServices';
 import Autocomplete from 'react-autocomplete';
 import './topBar.css';
 import { toPng } from 'html-to-image';
+import { useSuperviz } from '@superviz/react-sdk';
 
 function downloadImage(dataUrl) {
     const a = document.createElement("a");
@@ -18,6 +19,7 @@ const TopBar = () => {
   const [scenarioName, setScenarioName] = useState('');
   const [scenariosList, setScenariosList] = useState([]);
   const { saveScenario, loadScenario, updateScenario, resetScenario } = useScenario();  
+  const { stopRoom } = useSuperviz();
 
   useEffect(() => {
     const fetchScenarios = async () => {
