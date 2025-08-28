@@ -3,6 +3,10 @@
 A drag & drop web app inspired by tools like Mural, designed to build mind maps and reconstruct the lore of Elden Ring.
 It integrates official data through the GraphQL API of [Elden Ring Fan API](https://docs.eldenring.fanapis.com/), with support for saving boards and real-time collaboration.
 
+
+
+<img width="1728" height="936" alt="image" src="https://github.com/user-attachments/assets/3fb56996-3182-428e-a2d8-e448dbeb133c" />
+
 ---
 
 ## Features
