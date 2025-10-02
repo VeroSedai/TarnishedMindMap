@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
-import { QUERIES } from '../../queries/queries';
+import { QUERIES } from '../../../queries/queries';
 
 const client = new GraphQLClient('https://eldenring.fanapis.com/api/graphql');
 

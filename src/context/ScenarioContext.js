@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { loadScenario, saveScenario, updateScenario } from '../services/api/scenarioServices';
+import { loadScenario, saveScenario, updateScenario } from '../services/api/scenario/scenarioServices';
 
 const ScenarioContext = createContext();
 

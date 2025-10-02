@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from 'react-autocomplete';
 import './style.css';
-import fetchItemNames from '../../services/api/fetchItemNames';
-import { fetchItemDetails } from '../../services/api/fetchItemDetails';
+import fetchItemNames from '../../services/api/elden-ring-fanapis/getItemNames';
+import { fetchItemDetails } from '../../services/api/elden-ring-fanapis/getItemDetails';
 import { supabase } from '../../services/api/supabaseClient';
 
 const Sidebar = ({ onUpdateNode, selectedNodeData }) => {

@@ -1,5 +1,5 @@
 // services/scenarioService.js
-import { supabase } from '../../services/api/supabaseClient';
+import { supabase } from '../supabaseClient';
 
 export const saveScenario = async (scenarioName, nodes, edges) => {
   const scenario = { name: scenarioName, nodes, edges };

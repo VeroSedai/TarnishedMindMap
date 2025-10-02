@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useScenario } from '../../context/ScenarioContext';
-import { loadScenariosName } from '../../services/api/scenarioServices';
+import { loadScenariosName } from '../../services/api/scenario/scenarioServices';
 import Autocomplete from 'react-autocomplete';
 import './topBar.css';
 import { toPng } from 'html-to-image';
