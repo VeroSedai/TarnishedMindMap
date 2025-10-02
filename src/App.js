@@ -24,13 +24,13 @@ const App = () => {
 
     const { subscription } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_OUT" || session === null) {
-        setUserId(null); // Resetta userId dopo logout
+        setUserId(null); 
       } else if (event === "SIGNED_IN" && session?.user) {
-        setUserId(session.user.email); // Aggiorna userId dopo login
+        setUserId(session.user.email); 
       }
     });
 
-    return () => subscription?.unsubscribe(); // Cleanup per evitare memory leak
+    return () => subscription?.unsubscribe();
   }, []);
 
   return (
