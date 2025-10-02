@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import ReactFlow, { ReactFlowProvider, Controls, Background, BackgroundVariant } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -31,10 +31,7 @@ const DnDFlow = ({ participantId }) => {
   });
 
   // Gestione eventi SuperViz
-  useEffect(
-    useRealtimeHandlers({ isReady, subscribe, unsubscribe, syncNodes, syncEdges, participantId }),
-    [isReady, subscribe, unsubscribe, participantId]
-  );
+  useRealtimeHandlers({ isReady, subscribe, unsubscribe, syncNodes, syncEdges, participantId });
 
   const onNodeClick = (_, node) => !dragging && (setSelectedNodeId(node.id), setSelectedNodeData(node.data));
   const onNodeDragStart = () => setDragging(true);

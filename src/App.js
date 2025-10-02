@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TopBar from "./components/TopBar/TopBar";
-import DnDFlow from "./components/DragDrop/DnDFlow";
 import { ScenarioProvider } from "./context/ScenarioContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
