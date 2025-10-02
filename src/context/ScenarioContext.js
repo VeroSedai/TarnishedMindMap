@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
-import { loadScenario, saveScenario, updateScenario } from '../services/api/scenario/scenarioServices';
+import { saveScenario } from '../services/api/scenario/saveScenario';
+import { getScenarioByName } from '../services/api/scenario/getScenarioByName';
+import { updateScenario } from '../services/api/scenario/updateScenario';
 
 const ScenarioContext = createContext();
 
@@ -29,7 +31,7 @@ export const ScenarioProvider = ({ children }) => {
   };
 
   const handleLoadScenario = async (scenarioName) => {
-    const result = await loadScenario(scenarioName);
+    const result = await getScenarioByName(scenarioName);
     if (result.error) {
       console.error('Errore durante il caricamento:', result.error);
     } else {
