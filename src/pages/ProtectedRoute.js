@@ -10,23 +10,21 @@ const ProtectedRoute = ({ children }) => {
     const getSession = async () => {
       const { data } = await supabase.auth.getSession();
       setSession(data.session);
-      setLoading(false);  // Assicura che lo stato di loading sia aggiornato
+      setLoading(false);  
     };
 
     getSession();
   }, []);
 
-  // Se stiamo ancora caricando la sessione, possiamo mostrare uno stato di caricamento
+  
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Se non c'è una sessione, reindirizza alla pagina di login
   if (!session) {
     return <Navigate to="/login" replace />;
   }
 
-  // Se c'è una sessione valida, restituisci il contenuto protetto
   return children;
 };
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Autocomplete from 'react-autocomplete';
-import './style.css'; // Importiamo il file CSS
-import fetchNames from '../../services/api/fetchNames';
-import { fetchItemDetails } from '../../services/api/fetchDetails';
+import './style.css';
+import fetchItemNames from '../../services/api/fetchItemNames';
+import { fetchItemDetails } from '../../services/api/fetchItemDetails';
 import { supabase } from '../../services/api/supabaseClient';
 
 const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
@@ -49,7 +49,7 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
     setSearchValue('');
     setSuggestions([]);
 
-    const uniqueNames = await fetchNames(selectedType);
+    const uniqueNames = await fetchItemNames(selectedType);
     setSuggestions(uniqueNames);
   };
 
@@ -74,7 +74,7 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
       );
       setSuggestions(filteredSuggestions);
     } else {
-      fetchNames(itemType).then((uniqueNames) => {
+      fetchItemNames(itemType).then((uniqueNames) => {
         setSuggestions(uniqueNames);
       });
     }

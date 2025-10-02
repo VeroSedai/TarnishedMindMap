@@ -3,7 +3,7 @@ import { QUERIES } from '../../queries/queries';
 
 const client = new GraphQLClient('https://eldenring.fanapis.com/api/graphql');
 
-export const fetchNames = async (type) => {
+export const fetchItemNames = async (type) => {
   try {
       const response = await client.request(QUERIES[type].allNames);
       const results = response[type];
@@ -16,4 +16,4 @@ export const fetchNames = async (type) => {
   }
 };
 
-  export default fetchNames;
+  export default fetchItemNames;
