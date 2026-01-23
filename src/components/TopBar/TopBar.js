@@ -14,20 +14,22 @@ function downloadImage(dataUrl) {
   }
   ;
 
-const TopBar = () => {
+const TopBar = ({ isGuest = false }) => {
   const [scenarioName, setScenarioName] = useState('');
   const [scenariosList, setScenariosList] = useState([]);
   const { saveScenario, loadScenario, updateScenario, resetScenario } = useScenario();  
 
   useEffect(() => {
-    const fetchScenarios = async () => {
-      const scenarios = await getScenarioNames();
-      if (!scenarios.error) {
-        setScenariosList(scenarios); 
-      }
-    };
-    fetchScenarios();
-  }, []);
+    if (!isGuest) {
+      const fetchScenarios = async () => {
+        const scenarios = await getScenarioNames();
+        if (!scenarios.error) {
+          setScenariosList(scenarios); 
+        }
+      };
+      fetchScenarios();
+    }
+  }, [isGuest]);
 
   const handleDownload = () => {
     toPng(document.querySelector(".react-flow__viewport"), {
@@ -64,26 +66,30 @@ const TopBar = () => {
 
   return (
     <div className="topbar">
-      <Autocomplete
-        getItemValue={(item) => item}
-        items={scenariosList}
-        renderItem={(item, isHighlighted) => (
-          <div
-            key={item}
-            className={isHighlighted ? "react-autocomplete-item-highlighted" : "react-autocomplete-item"}
-          >
-            {item}
-          </div>
-        )}
-        value={scenarioName}
-        onChange={(e) => setScenarioName(e.target.value)}
-        onSelect={(val) => setScenarioName(val)}
-        inputProps={{ placeholder: "Scenario Name", className: 'react-autocomplete-input' }}
-      />
-      <button onClick={handleNewScenario} className="btn-top">New Scenario</button>  
-      <button onClick={handleLoadScenario} className="btn-top">Load Scenario</button>
-      <button onClick={handleSaveScenario} className="btn-top">Save Scenario</button>
-      <button onClick={handleUpdateScenario} className="btn-top">Update Scenario</button>
+      {!isGuest && (
+        <>
+          <Autocomplete
+            getItemValue={(item) => item}
+            items={scenariosList}
+            renderItem={(item, isHighlighted) => (
+              <div
+                key={item}
+                className={isHighlighted ? "react-autocomplete-item-highlighted" : "react-autocomplete-item"}
+              >
+                {item}
+              </div>
+            )}
+            value={scenarioName}
+            onChange={(e) => setScenarioName(e.target.value)}
+            onSelect={(val) => setScenarioName(val)}
+            inputProps={{ placeholder: "Scenario Name", className: 'react-autocomplete-input' }}
+          />
+          <button onClick={handleNewScenario} className="btn-top">New Scenario</button>  
+          <button onClick={handleLoadScenario} className="btn-top">Load Scenario</button>
+          <button onClick={handleSaveScenario} className="btn-top">Save Scenario</button>
+          <button onClick={handleUpdateScenario} className="btn-top">Update Scenario</button>
+        </>
+      )}
       <button onClick={handleDownload} className="btn-top">Download as Image</button>
     </div>
   );

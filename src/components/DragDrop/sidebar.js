@@ -94,6 +94,7 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
   };
 
   async function signOut() {
+    if (!supabase) return;
     const { error } = await supabase.auth.signOut();
     if (error) {
       console.error('Logout failed:', error);
@@ -210,11 +211,13 @@ const Sidebar = ({ onUpdateNode, selectedNodeData }) => {
         <p>Drag and drop this custom node to the pane on the right.</p>
         <div className="dndnode-sidebar" onDragStart={onDragStart} draggable>
           <img
-            src="https://p325k7wa.twic.pics/high/elden-ring/elden-ring/02-screenshots/ELDENRING_14_4K.jpg"
+            src={nodeImage || "https://p325k7wa.twic.pics/high/elden-ring/elden-ring/02-screenshots/ELDENRING_14_4K.jpg"}
             alt="Node Icon"
           />
-          <div className="node-title">Default Node</div>
-          <div className="node-description">An example of a node</div>
+          <div className="node-content">
+            <div className="node-title">{nodeName || "Default Node"}</div>
+            <div className="node-description">{nodeDescription || "An example of a node"}</div>
+          </div>
         </div>
       </div>
 

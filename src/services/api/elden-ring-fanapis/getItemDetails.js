@@ -1,7 +1,9 @@
 import { GraphQLClient } from 'graphql-request';
 import { QUERIES } from '../../../queries/queries';
 
-const client = new GraphQLClient('https://eldenring.fanapis.com/api/graphql');
+import { API_CONFIG } from '../../../config/apiConfig';
+
+const client = new GraphQLClient(API_CONFIG.ENDPOINT);
 
 export const fetchItemDetails = async (itemType, val) => {
     try {

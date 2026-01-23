@@ -68,3 +68,25 @@ cursor: pointer;
   background-color: #b6932e;
 }
 
+.guest-button {
+  padding: 10px;
+  margin-top: 15px;
+  background-color: transparent;
+  color: #e2bf65;
+  border: 1px solid #e2bf65;
+  border-radius: 5px;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.guest-button:hover {
+  background-color: rgba(226, 191, 101, 0.1);
+  box-shadow: 0 0 10px rgba(226, 191, 101, 0.3);
+}
+
+.guest-button:active {
+  background-color: rgba(226, 191, 101, 0.2);
+}
+

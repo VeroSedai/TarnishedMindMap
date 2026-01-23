@@ -27,7 +27,8 @@
 
 .dndflow .reactflow-wrapper {
   width: 100%;
-  height: 100vh; /* Fissa un'altezza per il wrapper */
+  height: 100vh;
+  /* Fissa un'altezza per il wrapper */
   position: relative;
 }
 
@@ -47,9 +48,12 @@
   }
 
   .dndflow aside {
-    height: 100%; /* Assicura che prenda tutto lo spazio disponibile */
-    max-height: 100vh; /* Massima altezza relativa alla finestra */
-    overflow-y: auto; /* Aggiungi lo scroll quando l'altezza non è sufficiente */
+    height: 100%;
+    /* Assicura che prenda tutto lo spazio disponibile */
+    max-height: 100vh;
+    /* Massima altezza relativa alla finestra */
+    overflow-y: auto;
+    /* Aggiungi lo scroll quando l'altezza non è sufficiente */
   }
 }
 
@@ -103,22 +107,27 @@
   background-color: rgba(40, 40, 40, 0.9);
   color: #d4c9b8;
   font-size: 14px;
-cursor: pointer;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .btn:hover {
-  background-color: #e3c194; /* Colore dorato quando si passa sopra */
-  color: #1a192b; /* Colore del testo scuro quando si passa sopra */
+  background-color: #e3c194;
+  /* Colore dorato quando si passa sopra */
+  color: #1a192b;
+  /* Colore del testo scuro quando si passa sopra */
 }
 
 .btn:active {
-  background-color: #d4c9b8; /* Colore di sfondo quando si fa clic */
-  color: #1a192b; /* Colore del testo scuro quando si fa clic */
+  background-color: #d4c9b8;
+  /* Colore di sfondo quando si fa clic */
+  color: #1a192b;
+  /* Colore del testo scuro quando si fa clic */
 }
 
 label {
-  color: #e3c194; /* Colore dorato */
+  color: #e3c194;
+  /* Colore dorato */
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 5px;
@@ -127,70 +136,97 @@ label {
 
 .dropdown,
 .autocomplete {
-  margin-bottom: 20px; /* Margine sotto */
+  margin-bottom: 20px;
+  /* Margine sotto */
 }
 
 .input-dropdown,
 .autocomplete-input {
-  background-color: rgba(40, 40, 40, 0.9); /* Sfondo scuro traslucido */
-  color: #d4c9b8; /* Testo dorato/chiaro */
-  border: 1px solid #e3c194; /* Bordi dorati */
-  border-radius: 5px; /* Angoli arrotondati */
-  padding: 10px; /* Spaziatura interna */
-  width: 100%; /* Larghezza del campo */
-  margin-bottom: 15px; /* Spaziatura sotto */
-  font-size: 14px; /* Dimensione del font */
-  transition: border-color 0.3s ease; /* Transizione per effetto al focus/hover */
+  background-color: rgba(40, 40, 40, 0.9);
+  /* Sfondo scuro traslucido */
+  color: #d4c9b8;
+  /* Testo dorato/chiaro */
+  border: 1px solid #e3c194;
+  /* Bordi dorati */
+  border-radius: 5px;
+  /* Angoli arrotondati */
+  padding: 10px;
+  /* Spaziatura interna */
+  width: 100%;
+  /* Larghezza del campo */
+  margin-bottom: 15px;
+  /* Spaziatura sotto */
+  font-size: 14px;
+  /* Dimensione del font */
+  transition: border-color 0.3s ease;
+  /* Transizione per effetto al focus/hover */
 }
 
-.autocomplete-input{
-  width: calc(100% - 20px); 
+.autocomplete-input {
+  width: calc(100% - 20px);
 }
 
 .input-dropdown:focus,
 .autocomplete-input:focus {
-  border-color: #FFD700; /* Effetto dorato brillante quando è in focus */
-  outline: none; /* Rimuove l'outline di default */
+  border-color: #FFD700;
+  /* Effetto dorato brillante quando è in focus */
+  outline: none;
+  /* Rimuove l'outline di default */
 }
 
 .autocomplete-item {
-  background-color: rgba(40, 40, 40, 0.9); /* Sfondo scuro traslucido */
-  color: #d4c9b8; /* Testo chiaro */
-  padding: 10px; /* Spaziatura */
-  border-bottom: 1px solid #e3c194; /* Bordi tra gli elementi */
-  cursor: pointer; /* Cursore a mano */
+  background-color: rgba(40, 40, 40, 0.9);
+  /* Sfondo scuro traslucido */
+  color: #d4c9b8;
+  /* Testo chiaro */
+  padding: 10px;
+  /* Spaziatura */
+  border-bottom: 1px solid #e3c194;
+  /* Bordi tra gli elementi */
+  cursor: pointer;
+  /* Cursore a mano */
 }
 
 .autocomplete-item.highlighted {
-  background-color: #e3c194; /* Colore dorato brillante quando l'elemento è evidenziato */
-  color: #1a192b; /* Testo scuro quando evidenziato */
+  background-color: #e3c194;
+  /* Colore dorato brillante quando l'elemento è evidenziato */
+  color: #1a192b;
+  /* Testo scuro quando evidenziato */
 }
 
 /* Stile della sidebar */
 .sidebar {
-  position: fixed; /* Fissiamo la sidebar sul lato sinistro */
-  top: 60px; /* Facciamo partire la sidebar sotto la topbar */
+  position: fixed;
+  /* Fissiamo la sidebar sul lato sinistro */
+  top: 60px;
+  /* Facciamo partire la sidebar sotto la topbar */
   left: 0;
-  width: 300px; /* Larghezza fissa della sidebar */
-  height: calc(100vh - 60px); /* L'altezza copre tutto lo schermo meno la topbar */
-  background-color: rgba(20, 20, 20, 1.0); /* Sfondo scuro traslucido */
-  padding: 20px; /* Spaziatura interna */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Ombra */
+  width: 300px;
+  /* Larghezza fissa della sidebar */
+  height: calc(100vh - 60px);
+  /* L'altezza copre tutto lo schermo meno la topbar */
+  background-color: rgba(20, 20, 20, 1.0);
+  /* Sfondo scuro traslucido */
+  padding: 20px;
+  /* Spaziatura interna */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+  /* Ombra */
   color: #d4c9b8;
   font-family: 'Garamond', serif;
-  z-index: 500; /* Sotto la topbar */
+  z-index: 500;
+  /* Sotto la topbar */
 }
 
 .input-text {
   width: calc(100% - 20px);
   font-size: 14px;
   margin-bottom: 15px;
-  background-color: rgba(40, 40, 40, 0.9); 
-  color: #d4c9b8; 
-  border: 1px solid #e3c194; 
+  background-color: rgba(40, 40, 40, 0.9);
+  color: #d4c9b8;
+  border: 1px solid #e3c194;
   border-radius: 4px;
   padding: 8px;
-  margin-right: 15px; 
+  margin-right: 15px;
 }
 
 
@@ -203,47 +239,67 @@ label {
 /* Custom Node sidebar */
 
 .dndnode-sidebar {
-  background-color: rgba(30, 30, 30, 0.9); 
-  border: 2px solid #e3c194; 
-  border-radius: 10px; 
-  padding: 10px; 
-  margin-top: 20px; 
-  text-align: center; 
-cursor: grab; 
-  color: #d4c9b8; 
-  font-size: 16px; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  width: 160px; 
-  height: 80px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
-  overflow: hidden; 
+  background-color: rgba(30, 30, 30, 0.9);
+  border: 2px solid #e3c194;
+  border-radius: 8px;
+  padding: 0;
+  margin-top: 10px;
+  text-align: center;
+  cursor: grab;
+  color: #d4c9b8;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dndnode-sidebar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(227, 193, 148, 0.2);
+  border-color: #ffd700;
 }
 
 .dndnode-sidebar img {
-  width: 40px; 
-  height: 40px; 
-  margin-bottom: 5px; 
-  border-radius: 50%; 
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-bottom: 2px solid #e3c194;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.node-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
 .dndnode-sidebar .node-title {
-  font-size: 12px; 
+  font-size: 14px;
   font-weight: bold;
-  margin-bottom: 3px; 
+  color: #e3c194;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .dndnode-sidebar .node-description {
-  font-size: 10px;
-  color: #b0a08a; 
+  font-size: 11px;
+  color: #b0a08a;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
 .btn-container {
   position: relative;
-  height: 100vh; 
+  height: 100vh;
   margin-top: 60%;
 }
-
-

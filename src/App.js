@@ -15,21 +15,25 @@ const App = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
+      if (!supabase) return;
       const { data: { user } } = await supabase.auth.getUser();
       setUserId(user?.email);
     };
 
     fetchUser();
 
-    const { subscription } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_OUT" || session === null) {
-        setUserId(null); 
-      } else if (event === "SIGNED_IN" && session?.user) {
-        setUserId(session.user.email); 
-      }
-    });
+    if (supabase) {
+      const { subscription } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === "SIGNED_OUT" || session === null) {
+          setUserId(null); 
+        } else if (event === "SIGNED_IN" && session?.user) {
+          setUserId(session.user.email); 
+        }
+      });
+      return () => subscription?.unsubscribe();
+    }
 
-    return () => subscription?.unsubscribe();
+
   }, []);
 
   return (
@@ -37,6 +41,34 @@ const App = () => {
       <Router basename="/react-elden-ring-mind-map">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/guest"
+            element={
+              <SuperVizRoomProvider
+                developerKey={developerKey}
+                group={{
+                  id: "demos-react-flow-group",
+                  name: "Demos: React Flow",
+                }}
+                participant={{
+                  id: "guest-" + Math.random().toString(36).substr(2, 9),
+                  name: "Guest",
+                }}
+                roomId="react-flow-demo"
+              >
+                <ReactFlowProvider>
+                  <ScenarioProvider>
+                    <div style={styles.appContainer}>
+                      <TopBar isGuest={true} />
+                      <div style={styles.mainContent}>
+                        <Room participantId={"guest"} />
+                      </div>
+                    </div>
+                  </ScenarioProvider>
+                </ReactFlowProvider>
+              </SuperVizRoomProvider>
+            }
+          />
           <Route
             path="/"
             element={

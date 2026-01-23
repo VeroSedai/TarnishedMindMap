@@ -9,6 +9,11 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    if (!supabase) {
+      console.error("Supabase not configured");
+      return;
+    }
+
     const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
@@ -42,6 +47,9 @@ const LoginPage = () => {
           />
           <button type="submit" className="login-button">Login</button>
         </form>
+        <button className="guest-button" onClick={() => window.location.href = '/react-elden-ring-mind-map/guest'}>
+          Continue as Guest
+        </button>
       </div>
     </div>
   );
