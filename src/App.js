@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <ScenarioProvider>
-      <Router basename="/react-elden-ring-mind-map">
+      <Router basename="/TarnishedMindMap">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
