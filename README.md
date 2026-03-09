@@ -9,6 +9,13 @@ It integrates official data through the GraphQL API of [Elden Ring Fan API](http
 
 ---
 
+## Live Demo
+
+You can test the application in **guest mode** (no registration required) at the following link:  
+**[Tarnished Mind Map - Live Version](https://verosedai.github.io/TarnishedMindMap/)**
+
+---
+
 ## Features
 
 * Interactive drag & drop board: create nodes, connect them, and visualize relationships between characters, events, and locations.
