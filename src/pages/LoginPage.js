@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/api/supabaseClient';
 import './loginPage.css'; // Importa il file CSS personalizzato
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ const LoginPage = () => {
     if (error) {
       console.error('Errore di login:', error.message);
     } else {
-      window.location.href = '/react-elden-ring-mind-map';
+      navigate('/');
     }
   };
 
@@ -47,7 +49,7 @@ const LoginPage = () => {
           />
           <button type="submit" className="login-button">Login</button>
         </form>
-        <button className="guest-button" onClick={() => window.location.href = '/react-elden-ring-mind-map/guest'}>
+        <button className="guest-button" onClick={() => navigate('/guest')}>
           Continue as Guest
         </button>
       </div>

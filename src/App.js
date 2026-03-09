@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TopBar from "./components/TopBar/TopBar";
 import { ScenarioProvider } from "./context/ScenarioContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Room from "./components/Room/Room";
@@ -38,7 +38,7 @@ const App = () => {
 
   return (
     <ScenarioProvider>
-      <Router basename="/TarnishedMindMap">
+      <Router>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route
